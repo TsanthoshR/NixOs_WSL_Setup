@@ -1,0 +1,12 @@
+# home/.claude holds only tracked config below - never the live ~/.claude
+# runtime state (credentials, history, sessions, cache) that gets symlinked
+# alongside it on the actual machine.
+home/.claude/*
+!home/.claude/settings.json
+
+# Same deal: herdr writes session.json, herdr-*.log, and *.sock into this
+# same directory at runtime - only config.toml is meant to be tracked.
+home/.config/herdr/*
+!home/.config/herdr/config.toml
+
+home/PROJECTS/
