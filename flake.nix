@@ -16,6 +16,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "hm-backup";
           home-manager.extraSpecialArgs = { user = "nixos"; };
           home-manager.users."nixos" = import ./home.nix;
         }
