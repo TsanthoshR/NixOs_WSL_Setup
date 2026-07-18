@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, user, herdrPkg, ... }:
 
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
@@ -19,6 +19,7 @@ in
     nodejs
     wezterm
     nerd-fonts.hack
+    herdrPkg
   ];
 
   fonts.fontconfig.enable = true;
@@ -75,4 +76,6 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/wezterm";
   home.file.".config/nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
+  home.file.".config/herdr".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
 }
