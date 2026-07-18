@@ -1,0 +1,36 @@
+wsl -d NixOS
+cd dotfiles
+sudo nixos-rebuild switch --flake .#wsl
+nix search nixpkgs nerdfonts --extra-experimental-features "nix-command flakes"
+
+# ===== CLAUDE CODE SETUP =====
+# Claude Code (claude CLI) requires:
+# 1. nodejs in home.packages (home.nix)
+# 2. NPM_CONFIG_PREFIX=$HOME/.npm-global (home.sessionVariables)
+# 3. $HOME/.npm-global/bin in home.sessionPath
+# 4. programs.nix-ld.enable = true with glibc in libraries (configuration.nix)
+#    -> nix-ld is needed because claude is a dynamically linked ELF binary
+#    -> without glibc in nix-ld.libraries, NIX_LD_LIBRARY_PATH stays empty and binary fails
+
+# Install claude code (after rebuild):
+#   mkdir -p ~/.npm-global
+#   npm install -g @anthropic-ai/claude-code
+#   cd ~/.npm-global/lib/node_modules/@anthropic-ai/claude-code && node install.cjs
+#   npm's allow-scripts policy blocks postinstall, so run install.cjs manually
+
+# API key (Claude Pro does NOT include API access - needs separate billing):
+#   export ANTHROPIC_API_KEY=sk-ant-...
+#   echo 'export ANTHROPIC_API_KEY=sk-ant-...' >> ~/.zshrc
+
+# DNS fix for WSL (add to configuration.nix):
+#   networking.nameservers = [ "8.8.8.8" "1.1.1.1" ];
+# Quick fix without rebuild:
+#   echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
+
+# NixOS quirks:
+#   - programs.zsh.initContent is Home Manager only; use programs.zsh.enable = true at system level
+#   - CRLF line endings in .zshrc cause ^M errors: fix with  sed -i 's/\r//' ~/.zshrc
+#   - networking.firewall.enable = false  (iptables not supported in WSL kernel)
+
+
+ /mnt/d now points directly at D:\Software_Installations\nix
