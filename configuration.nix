@@ -70,19 +70,6 @@
     ];
   };
 
-  # ===== PASSWORDLESS SUDO =====
-  security.sudo.extraRules = [
-    {
-      groups = [ "wheel" ];
-      commands = [
-        {
-          command = "ALL";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
-
   # ===== NIX SETTINGS =====
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.extraOptions = ''
