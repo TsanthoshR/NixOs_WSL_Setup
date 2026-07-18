@@ -1,5 +1,10 @@
 # Project notes for agents
 
+> Reference notes for whoever debugs or extends this repo next, human or
+> agent - not auto-loaded into Claude Code's context (it only reads
+> `CLAUDE.md`, not arbitrary filenames). Read it manually, or point an agent
+> at it, when working on this repo.
+
 Deliberate decisions in this repo - do NOT silently revert them:
 
 - The scoped `/mnt/d` mount and disabled WSL automount (`configuration.nix`) are
@@ -32,8 +37,8 @@ Deliberate decisions in this repo - do NOT silently revert them:
   `~/.dotfiles` to wherever this repo actually lives.
 - `home/AGENTS.md` is the personal, cross-project agent policy - symlinked to
   `~/.claude/CLAUDE.md` so it applies globally, not just here. This file
-  (repo root `AGENTS.md`) is the one that stays repo-specific and unlinked.
-  Don't merge them back together.
+  (repo root `DECISIONS.md`) is the one that stays repo-specific and
+  unlinked. Don't merge them back together.
 
 ## Maintaining this file
 
