@@ -23,6 +23,13 @@ in
 
   fonts.fontconfig.enable = true;
 
+  home.pointerCursor = {
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 24;
+    gtk.enable = true;
+  };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     NPM_CONFIG_PREFIX = "$HOME/.npm-global";
